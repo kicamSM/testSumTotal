@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td class="Fred" id="1-0">0</td>
-                <td class="George" id="1-1">1</td>
+                <td class="George" id="1-1">5</td>
                 <td class="Andrew" id="1-2">2</td>
             </tr>
             <tr>
@@ -31,33 +31,58 @@
                 <td class="Andrew" id="2-2">2</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td class="sum"></td>
+                <td class="sum"></td>
+                <td class="sum"></td>
+            </tr>
+        </tfoot>
     </table>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 
-    <script>
+    <script teype="text/javascript">
         namesArray = ['Fred', 'George', 'Andrew']
 
         arrayTotals = []
 
-        function sumTotalTable() {
-            for(let i = 0; i < namesArray.length; i++) {
-                let columnsObject = document.getElementsByClassName(namesArray[i])
-                console.log(columnsObject)
-                // obviously I am reseting the var here so that the same variable is only going to be the answer to one of these columns with a class name of name from the names array. From what I can tell I need a variable from each name 
+        // function sumTotalTable() {
+        //     for(let i = 0; i < namesArray.length; i++) {
+        //         let columnsObject = document.getElementsByClassName(namesArray[i])
+        //         console.log(columnsObject)
+        //         // obviously I am reseting the var here so that the same variable is only going to be the answer to one of these columns with a class name of name from the names array. From what I can tell I need a variable from each name 
                 
-                // tried using a template literal `columnsObect${i}` = document.getElementsByClassName(namesArray[i])
-                // which does not work
+        //         // tried using a template literal `columnsObect${i}` = document.getElementsByClassName(namesArray[i])
+        //         // which does not work
 
-                // then I would have to do something like 
-                arrayTotals.push(columnsObject1.innerHTML) 
-                // note would need a seperate array for each name or would need to push these as an array of arrays so I could tell which columns is which 
+        //         // then I would have to do something like 
+        //         arrayTotals.push(columnsObject1.innerHTML) 
+        //         // note would need a seperate array for each name or would need to push these as an array of arrays so I could tell which columns is which 
 
-                console.log(arrayTotals)
+        //         console.log(arrayTotals)
 
 
-            }
+        //     }
 
             // after this I would need to sum the totals array. for the sum of each individual column/ total score for each individual player 
-        }
+        // }
+
+        $( document ).ready( function() {
+        var sum_total = 0;
+        $("tbody tr").each(function(index) {
+            console.log(index)
+      sum_total += $(this).children().eq(index).text() * 1;
+    //   eq 1 is taking the index 1 from the rows 
+    // that number is determing which column is being summed 
+    });
+
+    $( "td.sum" ).text( sum_total );
+
+});
+
     </script>
 
 </body>
